@@ -1,3 +1,9 @@
+# E-Commerce App
+
+## About the project
+This e-commerce web application (React & JavaScript) uses Commerce.js and Stripe for card transactions. Plus, Material-UI was used for the front end.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
