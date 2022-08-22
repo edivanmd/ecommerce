@@ -1,7 +1,10 @@
 # E-Commerce App
 
 ## About the project
-This e-commerce web application (React & JavaScript) uses Commerce.js and Stripe for card transactions. Plus, Material-UI was used for the front end.
+React
+JavaScript
+Material-UI 
+Commerce.js and Stripe 
 
 
 # Getting Started with Create React App
