@@ -1,10 +1,10 @@
 # E-Commerce App
 
 ## About the project
-React
-JavaScript
-Material-UI 
-Commerce.js and Stripe 
+React \
+JavaScript \
+Material-UI \
+Commerce.js and Stripe
 
 
 # Getting Started with Create React App
