@@ -6,7 +6,7 @@ import logo from '../../assets/ecommerce.png';
 import useStyles from './styles';
 
 
-const Navbar = () => {
+const Navbar = ({ totalItems }) => {
     const classes = useStyles();
 
     return (
@@ -15,12 +15,12 @@ const Navbar = () => {
                 <Toolbar>
                     <Typography variant='h6' className={classes.title} color='inherit'>
                         <img src={logo} alt="Commerce.js" height="25px" className={classes.image} />
-                        Commerce.js
+                        My E-commerce
                     </Typography>
                     <div className={classes.grow} />
                     <div className={classes.button}>
                         <IconButton aria-label='Show cart items' color='inherit'>
-                            <Badge badgeContent={2} color='secondary' overlap="rectangular">
+                            <Badge badgeContent={totalItems} color='secondary' overlap="rectangular">
                                 <ShoppingCart />
                             </Badge>
                         </IconButton>
