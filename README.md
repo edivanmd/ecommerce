@@ -4,7 +4,8 @@
 React \
 JavaScript \
 Material-UI \
-Commerce.js and Stripe
+Commerce.js and Stripe \
+React Hook Form
 
 
 # Getting Started with Create React App

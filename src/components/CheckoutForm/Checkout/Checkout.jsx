@@ -9,10 +9,14 @@ const steps = ['Shipping Address', 'Payment Details'];
 
 const Checkout = () => {
   const classes = useStyles();
-  const [activeStep, SetActiveStep] = useState(0);
+  const [activeStep, SetActiveStep] = useState(2);
 
   const Confirmation = () => {
-    <div>Confirmation</div>
+    return (
+      <div>
+        Confirmation
+      </div>
+    )
   }
 
   const Form = () => activeStep === 0 
