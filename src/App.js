@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { commerce } from './lib/commerce';
-import { Products, Navbar, Cart } from './components';
+import { Products, Navbar, Cart, Checkout } from './components';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
@@ -45,7 +45,7 @@ function App() {
     fetchCart();
   }, []);
   
-    console.log(cart);
+  // console.log(cart);
   
   return (
     <Router>
@@ -61,6 +61,8 @@ function App() {
               onRemoveFromCart={handleRemoveFromCart}
             />}
           />
+          <Route path="/" element={<Products products={products} onAddToCart={handleAddToCart} />} />
+          <Route path='/checkout' element={<Checkout/>} />
         </Routes>
       </div>
     </Router>
