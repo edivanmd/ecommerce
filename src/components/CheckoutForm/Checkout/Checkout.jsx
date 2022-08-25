@@ -8,10 +8,14 @@ import useStyles from './styles';
 
 const steps = ['Shipping Address', 'Payment Details'];
 
-const Checkout = ({ cart }) => {
+const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
   const classes = useStyles();
-  const [activeStep, SetActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const [checkoutToken, setCheckoutToken] = useState(null);
+  const [shippingData, setShippingData] = useState({});
+
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   useEffect(() => {
     const generateToken = async () => {
@@ -25,7 +29,12 @@ const Checkout = ({ cart }) => {
     }
 
     generateToken();
-  }, []);
+  }, [cart]);
+
+  const test = (data) => {
+    setShippingData(data);
+    nextStep();
+  }
 
   const Confirmation = () => {
     return (
@@ -36,8 +45,9 @@ const Checkout = ({ cart }) => {
   }
 
   const Form = () => activeStep === 0 
-    ? <AddressForm checkoutToken={checkoutToken} />
-    : <PaymentForm />
+    ? <AddressForm checkoutToken={checkoutToken} test={test} />
+    : <PaymentForm checkoutToken={checkoutToken} nextStep={nextStep} backStep={backStep} shippingData={shippingData} onCaptureCheckout={onCaptureCheckout} />;
+
 
 
   return (
