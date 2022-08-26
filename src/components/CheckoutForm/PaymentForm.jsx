@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Button, Divider } from '@material-ui/core';
 import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
@@ -7,7 +7,9 @@ import Review from './Review';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout }) => {
+const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptureCheckout, timeout }) => {
+    const [errorMsg, setErrorMsg] = useState('');
+
     const handleSubmit = async (event, elements, stripe) => {
       event.preventDefault();
 
@@ -18,7 +20,8 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
       const { error, paymentMethod } = await stripe.createPaymentMethod({ type: 'card', card: cardElement });
       
       if (error) {
-        console.log('[error]', error);
+        console.log('[error]', error, );
+        setErrorMsg(error.message)
       } else {
         const orderData = {
           line_items: checkoutToken.live.line_items,
@@ -34,6 +37,8 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
         };
 
         onCaptureCheckout(checkoutToken.id, orderData);
+
+        timeout();
 
         nextStep();
       }
@@ -57,6 +62,7 @@ const PaymentForm = ({ checkoutToken, nextStep, backStep, shippingData, onCaptur
                   Pay {checkoutToken.live.subtotal.formatted_with_symbol}
                 </Button>
               </div>
+              <p style={{ overflow: 'hidden'}}>{errorMsg}</p>
             </form>
           )}
         </ElementsConsumer>

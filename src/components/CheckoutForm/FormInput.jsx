@@ -11,6 +11,7 @@ const FormInput = ({ name, label }) => {
                 name={name}
                 control={control}
                 rules={{ required: true }}
+                defaultValue=""
                 render={({ 
                     field: { onChange, value },
                     fieldState: { error },
